@@ -29,7 +29,7 @@ An automated financial news aggregation and distribution system powered by AI ag
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/financial-news-crew.git
+git clone https://github.com/Ashish032002/CrewAi_automation/.git
 cd financial-news-crew
 ```
 
