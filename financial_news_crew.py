@@ -8,11 +8,13 @@ from crewai import Agent, Task, Crew, Process
 from dotenv import load_dotenv
 import schedule
 import time
+import sib_api_v3_sdk
+from sib_api_v3_sdk.rest import ApiException
+from sib_api_v3_sdk.configuration import Configuration
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from brevo_sdk import BrevoAPIClient
 import telegram
 import litellm
 
@@ -80,7 +82,9 @@ class FinancialNewsTools:
         try:
             if method == "email":
                 # Initialize Brevo client
-                client = BrevoAPIClient(api_key=os.getenv("BREVO_API_KEY"))
+                configuration = Configuration()
+                configuration.api_key['api-key'] = os.getenv("BREVO_API_KEY")
+                api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
                 # Implement email sending logic
                 pass
             elif method == "telegram":
